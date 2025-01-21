@@ -1,0 +1,21 @@
+﻿::deep .grid-toolbar-sort,
+::deep .grid-toolbar-filter {
+    background-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    background-position: center center;
+    background-color: currentColor;
+    height: 16px;
+    width: 16px;
+    opacity: 0.7;
+}
+
+::deep .grid-toolbar-sort {
+    -webkit-mask-image: url("images/sort.svg");
+    mask-image: url("images/sort.svg");
+}
+
+::deep .grid-toolbar-filter {
+    -webkit-mask-image: url("images/filter.svg");
+    mask-image: url("images/filter.svg");
+}
