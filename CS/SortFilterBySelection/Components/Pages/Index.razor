@@ -22,12 +22,12 @@
             <DxToolbar ItemRenderStyleMode="ToolbarRenderStyleMode.Plain">
                 <DxToolbarItem @bind-Checked="@IsSorted"
                                GroupName="Sorting"
-                               Text="Show selected rows first"
+                               Text="Bring Selection to Top"
                                Click="SortBySelection"
                                IconCssClass="grid-toolbar-sort" />
                 <DxToolbarItem @bind-Checked="@IsFiltered"
                                GroupName="Filtering"
-                               Text="Show only selected rows"
+                               Text="Display Selected Only"
                                Click="FilterBySelection" 
                                BeginGroup="true"
                                IconCssClass="grid-toolbar-filter" />
