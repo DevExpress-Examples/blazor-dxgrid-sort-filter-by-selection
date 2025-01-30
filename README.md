@@ -5,7 +5,7 @@
 <!-- default badges end -->
 # Blazor Grid — Sort and Filter Data by Selection
 
-Filter and sort operations help users find and display records that match criteria. When no simple criteria identify specific data, users can manually find and select rows to process and then sort/filter data by selected rows. In this example, the [DevExpress Blazor Grid](https://docs.devexpress.com/Blazor/403143/components/grid) component allows users to bring selected rows to the top or display only those rows.
+Filter and sort operations help users find and display records that match criteria. When no simple criteria identify specific data, users can select rows to process and then sort/filter data by these rows. In this example, the [DevExpress Blazor Grid](https://docs.devexpress.com/Blazor/403143/components/grid) component allows users to bring selected rows to the top or display only those rows.
 
 ![Sort and Filter Data by Selection](sort-and-filter-grid-by-selection.gif)
 
@@ -19,7 +19,7 @@ To filter [DevExpress Blazor Grid](https://docs.devexpress.com/Blazor/403143/com
 4. Set the column's [SortMode](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.SortMode) property to `Custom`.
 5. Handle the Grid's [CustomSort](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.CustomSort) event. In the event handler, compare rows by their selection state.
 
-You can now sort data against the service column to bring selected rows to the top. 
+You can now sort data against the service column to bring the selected rows to the top. 
 
 ## Files to Review
 
