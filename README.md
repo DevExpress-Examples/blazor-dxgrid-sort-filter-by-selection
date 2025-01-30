@@ -17,7 +17,7 @@ To filter [DevExpress Blazor Grid](https://docs.devexpress.com/Blazor/403143/com
 2. Set the column's [FieldName](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.FieldName) to a unique value not present in the bound data source.
 3. Set the column's [UnboundType](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.UnboundType) to a value other than `Bound`.
 4. Set the column's [SortMode](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.SortMode) property to `Custom`.
-5. Handle the Grid's [CustomSort](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.CustomSort) event. In the event handler, compare rows by their selection state.
+5. Handle the Grid's [CustomSort](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.CustomSort) event, and compare rows by their selection state in the event handler.
 
 You can now sort data against the service column to bring the selected rows to the top. 
 
