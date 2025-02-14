@@ -1,0 +1,82 @@
+﻿@page "/"
+@using SortFilterBySelection.Services
+@attribute [StreamRendering(true)]
+@rendermode InteractiveServer
+@inject WeatherForecastService ForecastService
+
+<div>
+    <DxGrid @ref="Grid"
+            CustomSort="Grid_CustomSort"
+            Data="@forecasts"
+            SelectedDataItems="@SelectedDataItems"
+            SelectedDataItemsChanged="OnSelectedDataItemsChanged">
+        <Columns>
+            <DxGridSelectionColumn />
+            <DxGridDataColumn Caption="Date" FieldName="Date" />
+            <DxGridDataColumn Caption="Temperature (C)" FieldName="TemperatureC" />
+            <DxGridDataColumn Caption="Temperature (F)" FieldName="TemperatureF" />
+            <DxGridDataColumn Caption="Summary" FieldName="Summary" />
+            <DxGridDataColumn UnboundType="GridUnboundColumnType.Boolean" FieldName="ServiceColumn" Visible="false" SortMode="GridColumnSortMode.Custom" />
+        </Columns>
+        <ToolbarTemplate>
+            <DxToolbar ItemRenderStyleMode="ToolbarRenderStyleMode.Plain">
+                <DxToolbarItem @bind-Checked="@IsSorted"
+                               GroupName="Sorting"
+                               Text="Bring Selection to Top"
+                               Click="SortBySelection"
+                               IconCssClass="grid-toolbar-sort" />
+                <DxToolbarItem @bind-Checked="@IsFiltered"
+                               GroupName="Filtering"
+                               Text="Display Selected Only"
+                               Click="FilterBySelection" 
+                               BeginGroup="true"
+                               IconCssClass="grid-toolbar-filter" />
+            </DxToolbar>
+        </ToolbarTemplate>
+    </DxGrid>
+</div>
+
+@code {
+    IGrid Grid;
+    private WeatherForecast[]? forecasts;
+    IReadOnlyList<object> SelectedDataItems;
+    bool IsFiltered = false;
+    bool IsSorted = false;
+
+    protected override async Task OnInitializedAsync() {
+        forecasts = await ForecastService.GetForecastAsync(DateOnly.FromDateTime(DateTime.Now));
+        SelectedDataItems = forecasts.Where(x => x.Date.DayOfWeek >= DayOfWeek.Friday).ToList();
+    }
+
+    void SortBySelection() {
+        Grid.SortBy("ServiceColumn", GridColumnSortOrder.Ascending, -1);
+        if (IsSorted)
+            Grid.SortBy("ServiceColumn", GridColumnSortOrder.Ascending, 0);
+    }
+    void Grid_CustomSort(GridCustomSortEventArgs e) {
+        if (e.FieldName == "ServiceColumn") {
+            var selectionState1 = e.Grid.IsDataItemSelected(e.DataItem1);
+            var selectionState2 = e.Grid.IsDataItemSelected(e.DataItem2);
+            e.Result = selectionState2.CompareTo(selectionState1);
+            e.Handled = true;
+        }
+    }
+    void FilterBySelection() {
+        Grid.BeginUpdate();
+        if (IsFiltered)
+            Grid.Data = SelectedDataItems;
+        else
+            Grid.Data = forecasts;
+        Grid.EndUpdate();
+    }
+    void OnSelectedDataItemsChanged(IReadOnlyList<object> newSelection) {
+        SelectedDataItems = newSelection;
+        if (IsFiltered) {
+            Grid.BeginUpdate();
+            Grid.Data = SelectedDataItems;
+            Grid.EndUpdate();
+        }
+        if (IsSorted)
+            SortBySelection();
+    }
+}
