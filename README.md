@@ -41,7 +41,7 @@ You can now sort data against the service column to move selected rows to the to
 - [Blazor Grid - Delete Selected Rows](https://github.com/DevExpress-Examples/blazor-dxgrid-delete-selected-rows)
 
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=blazor-grid-sort-filter-by-selection&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=blazor-grid-sort-filter-by-selection&~~~was_helpful=no)
 
